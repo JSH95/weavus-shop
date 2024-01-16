@@ -9,23 +9,24 @@
 <body>
     <form class="container" action="/login" method="post">
         <div class="container container-fluid">
-            <a href="/index" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                 <img class="logo" src="https://www.weavus-group.com/asset/svg/logo.svg" alt="">
             </a>
         </div>
         <div class="mb-3 row">
             <label>id
-            <input type="text" class="form-control" name="id">
+            <input type="text" class="form-control" name="id" id="id">
             </label>
         </div>
         <div class="mb-3 row">
             <label>Password
-            <input type="password" class="form-control" name="password">
+            <input type="password" class="form-control" name="password" id="password">
             </label>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="submit" class="btn btn-outline-primary">로그인ee</button>
+            <button type="submit" class="btn btn-outline-primary">로그인</button>
             <a href="/index" class="btn btn-outline-primary" tabindex="-1" role="button" aria-disabled="false">회원가입</a>
+            {msg}
         </div>
 </form>
 </body>
