@@ -1,13 +1,13 @@
 package com.weavus.weavusshoppingmall.repo;
 
+import com.weavus.weavusshoppingmall.entity.Item;
 import com.weavus.weavusshoppingmall.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface UserMapper {
-    User findById(String id);
+public interface ItemMapper {
+    Item findById(String itemId);
 
-    User findByIdAndPassword(String id, String password);
+    void saveItem(Item item);
 
-    void saveUser(User user);
 }

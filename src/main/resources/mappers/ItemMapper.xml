@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weavus.weavusshoppingmall.repo.ItemMapper">
+    <select id="findById" resultType="com.weavus.weavusshoppingmall.entity.Item">
+        select * from item
+        where itemId = #{itemId}
+    </select>
+
+    <insert id="saveItem" parameterType="com.weavus.weavusshoppingmall.entity.Item">
+        insert into item (item_id, item_name, item_category, item_info, item_price, item_status, filepath, filename)
+        values (#{itemId}, #{itemName}, #{itemCategory}, #{itemInfo}, #{itemPrice}, #{itemStatus}, #{filepath}, #{filename});
+    </insert>
+
+</mapper>

@@ -1,17 +1,20 @@
 package com.weavus.weavusshoppingmall.entity;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Data
+@AllArgsConstructor
     public class User {
         private String id;
         private String password;
         private String userEmail;
-        private Integer cardNumber;
-        private Integer cardCvc;
+        private int cardNumber;
+        private int cardCvc;
         private String userName;
         private String userEnName;
         private LocalDate createdDate;
-    }
+        private String isActive;
+}

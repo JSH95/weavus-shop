@@ -8,39 +8,24 @@
 </head>
 <body>
 
-<form class="container" th:action="@{/index}" method="get">
-    <header>
-                <nav class="navbar bg-body-tertiary">
-                    <div class="container-fluid">
-                        <a href="test.html">
-                            <img src="https://www.weavus-group.com/asset/svg/logo.svg" alt="Logo" width="90" height="25" class="d-inline-block align-text-top">
-                            Shop
-                        </a>
-                        <div class="col-3">
-                        <a class="btn btn-outline-success" href="#">상품등록</a>
-                        <a class="btn btn-outline-success" href="#">장바구니</a>
-                        <a class="btn btn-outline-success" href="login.html">로그인</a>
-                        </div>
-                    </div>
-                </nav>
-    </header>
+<form class="container" action="test" method="post" enctype="multipart/form-data">
 
-    <main>
-        <div class="container text-center">
-            <div class="row">
-                <div class="col">
-                    <ul class="list-group">
-                        <a href="#" class="list-group-item">의류</a>
-                        <a href="#" class="list-group-item">신발</a>
-                        <a href="#" class="list-group-item">기타</a>
-                    </ul>
-                </div>
-                <div class="col-10">
-                    2 of 3 (wider)
-                </div>
-            </div>
-        </div>
-    </main>
+    <div class="mb-3">
+        <label class="form-label">Default file input example</label>
+        <input class="form-control" type="file" name="file">
+        <input type="text" class="form-control" name="itemName" style="width: 40%" placeholder="itemName" required>
+        <br>
+        <input type="text" class="form-control" name="itemCategory" style="width: 40%" placeholder="itemCategory" required>
+        <br>
+        <input type="text" class="form-control" name="itemInfo" style="width: 40%" placeholder="itemInfo" required>
+        <br>
+        <input type="text" class="form-control" name="itemPrice" style="width: 40%" placeholder="itemPrice" required>
+        <br>
+        <input type="hidden" name="itemStatus" value="1">
+
+        <button type="submit" class="btn btn-danger mb-3">저장1</button>
+        <span th:text="${msg}"></span>
+    </div>
 </form>
 </body>
 </html>
