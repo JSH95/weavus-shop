@@ -12,4 +12,9 @@
         values (#{itemId}, #{itemName}, #{itemCategory}, #{itemInfo}, #{itemPrice}, #{itemStatus}, #{filepath}, #{filename});
     </insert>
 
+    <select id="getAllItems" resultType="com.weavus.weavusshoppingmall.entity.Item">
+    select * from item
+    </select>
+
+
 </mapper>

@@ -1,40 +1,62 @@
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <title>상품상세페이지</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>WEAVUS 쇼핑몰 상세정보</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <!--        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
 </head>
-<body>
-
-<table class="container">
-    <thead>
-    <div class="col mb-5">
-        <div class="card h-100">
-            <!-- Product image-->
-            <img class="card-img-top" src="@{/detail/{name}(name=${#})}" + .jpg alt="..." />
-            <!-- Product details-->2
-            <div class="card-body p-4">
-                <div class="text-center">
-                    <!-- Product name-->
-                    <h5 class="fw-bolder">
-                      <!--  옷이름 리스트 뽑는 부분-->
-                    </h5>
-
-                </div>
-            </div>
-            <!-- Product actions-->
-            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">add cart</a></div>
-            </div>
+<body class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#!">WEAVUS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">옷</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">남성용</a></li>
+                        <li><a class="dropdown-item" href="#!">여성용</a></li>
+                        <li><a class="dropdown-item" href="#!">아이용</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">신발</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">남성용</a></li>
+                        <li><a class="dropdown-item" href="#!">여성용</a></li>
+                        <li><a class="dropdown-item" href="#!">아이용</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
-    </thead>
-    <tbody>
-
-    </tbody>
-</table>
-</form>
-
+</nav>
+<div class="card" style="width: 69.8rem;">
+    <img class="card-img-top" th:src="${item.filepath}" alt="..." style="height: 300px">
+    <div class="card-body">
+        <h5 class="card-title" th:text="${item.itemName}"></h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${item.itemInfo}">상품 설명</h6>
+        <p class="card-text" th:text="${item.itemPrice}">상품 가격</p>
+        <a class="btn btn-info" href="/payment" class="card-link">구매</a>
+        <a class="btn btn-warning" href="#" class="card-link">장바구니</a>
+    </div>
+</div>
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">WEAVUS &copy; Your Website 2024</p></div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
 </body>
 </html>

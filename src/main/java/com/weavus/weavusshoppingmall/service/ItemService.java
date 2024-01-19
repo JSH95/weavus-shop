@@ -4,9 +4,13 @@ import com.weavus.weavusshoppingmall.entity.Item;
 import com.weavus.weavusshoppingmall.repo.ItemMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -35,6 +39,10 @@ public class ItemService {
         }catch (Exception e){
             return false;
         }
+    }
+
+    public List<Item> getAllItems(){
+        return itemMapper.getAllItems();
     }
 
 }
