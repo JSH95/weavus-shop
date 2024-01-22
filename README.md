@@ -18,5 +18,6 @@
 
 </details>
 
+[![GitHub Streak](https://streak-stats.demolab.com?user=JSH95&locale=ko&exclude_days=Mon)](https://git.io/streak-stats)
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=JSH95&layout=donut-vertical&exclude_repo=BookRental,TestTranslatorBack,ClassManagement,test_repo,testrepo,weavusmanage)](https://github.com/anuraghazra/github-readme-stats)
