@@ -21,7 +21,6 @@ public class LoginController {
     private final UserMapper userMapper;
     private final LoginService loginService;
 
-    //todo 중요기록을 하는 명령어 현장방식이 존재함
     @GetMapping("/login")
     private String login(){
 
@@ -32,7 +31,7 @@ public class LoginController {
     private String login(String id, String password, Model model, HttpServletRequest request){
        User user = userMapper.findByIdAndPassword(id, password);
 
-       if (user != null) {
+       if (user != null) { //서비스로 옮기기
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             log.info("user={}", user); //회원가입 완료시 로그인화면 회원가입 완료 문구 표시 부분
@@ -48,7 +47,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.invalidate();
         model.addAttribute("msg", "로그아웃 되었습니다.");
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping("/signup")
@@ -68,20 +67,20 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/idcheck")
+    @GetMapping("/idCheck")//카멜식 바꾸기
     private String moveIdCheck(){
-        return "idcheck";
+        return "idCheck";
     }
 
-    @PostMapping("/idcheck")
-    private String idcheck(String id, Model model){
+    @PostMapping("/idCheck")
+    private String idCheck(String id, Model model){
         User user = userMapper.findById(id);
         if (user != null){
             model.addAttribute("msg","중복된 아이디 입니다.");
         }else {
             model.addAttribute("msg","사용 가능한 아이디 입니다.");
         }
-        return "idcheck";
+        return "idCheck";
     }
 
 }

@@ -12,9 +12,8 @@ public class LoginService {
 
     private final UserMapper userMapper;
 
+    public boolean signup(UserDto userDto) {
 
-
-    public boolean signup(UserDto userDto){
         User user = new User(
                 userDto.getId(),
                 userDto.getPassword(),
@@ -25,13 +24,12 @@ public class LoginService {
                 userDto.getUserEnName(),
                 null,
                 userDto.getIsActive()
-
                 );
 
-        try{
+        try {
             userMapper.saveUser(user);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }

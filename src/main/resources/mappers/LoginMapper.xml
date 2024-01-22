@@ -17,5 +17,4 @@
         values (#{id}, #{password}, #{userEmail}, #{cardNumber}, #{cardCvc}, #{userName}, #{userEnName}, #{isActive});
     </insert>
 
-
 </mapper>

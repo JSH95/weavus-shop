@@ -2,8 +2,6 @@ package com.weavus.weavusshoppingmall.dto;
 
 import lombok.Data;
 
-import java.time.LocalDate;
-
 @Data
 public class UserDto {
     private String id;
@@ -13,6 +11,5 @@ public class UserDto {
     private int cardCvc;
     private String userName;
     private String userEnName;
-    //private LocalDate createdDate;
     private String isActive;
 }

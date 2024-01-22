@@ -1,7 +1,7 @@
 package com.weavus.weavusshoppingmall.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.*;
+import lombok.Data;
 
 import java.time.LocalDate;
 

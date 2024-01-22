@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    <title>WEAVUS 쇼핑몰 메인화면</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -25,17 +25,17 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">옷</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">남성용</a></li>
-                        <li><a class="dropdown-item" href="#!">여성용</a></li>
-                        <li><a class="dropdown-item" href="#!">유아용</a></li>
+                        <li><a class="dropdown-item" th:href="@{/{num}(num = ${1})}" >남성용</a></li>
+                        <li><a class="dropdown-item" th:href="@{/{num}(num = ${2})}">여성용</a></li>
+                        <li><a class="dropdown-item" th:href="@{/{num}(num = ${3})}">유아용</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">신발</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">남성용</a></li>
-                        <li><a class="dropdown-item" href="#!">여성용</a></li>
-                        <li><a class="dropdown-item" href="#!">유아용</a></li>
+                        <li><a class="dropdown-item" th:href="@{/{num}(num = ${4})}">남성용</a></li>
+                        <li><a class="dropdown-item" th:href="@{/{num}(num = ${5})}">여성용</a></li>
+                        <li><a class="dropdown-item" th:href="@{/{num}(num = ${6})}">유아용</a></li>
                     </ul>
                 </li>
             </ul>
@@ -54,7 +54,7 @@
                 <span th:text="${session.user.getUserName()} + '님 환영합니다.'"></span>
                 <a class="btn btn-outline-dark" href="/logout">로그아웃</a>
                 <div th:if="${session.user.id == 'admin'}" >
-                    <a class="btn btn-outline-dark" th:href="@{/itemSave/{id}(id = ${session.user.id})}">상품등록</a>
+                    <a class="btn btn-outline-dark" th:href="@{/itemSave}">상품등록</a>
                 </div>
             </div>
             <span th:text="${msg}"></span>
@@ -71,19 +71,18 @@
 </header>
 
 <!-- Section-->
-
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 <!--            홈화면 물건 리스트 루프로 불러오기 -->
             <div class="col-mb-5" th:each=" item : ${items}">
                 <div class="card h-100">
-                    <a th:href="@{/detail/{id}(id=${item.itemId})}">
+                    <a th:href="@{/detail/{id}(id = ${item.itemId})}">
                     <img class="card-img-top" th:src="${item.getFilepath()}" alt="..." style="height: 300px">
                     </a>
                     <div class="text-center">
                         <h5 class="fw-bolder" th:text="${item.getItemName()}"></h5>
-                        <p th:text="|${item.getItemPrice()} 원|"></p>
+                        <h6 th:text="${item.getItemPrice()}"></h6>
                     </div>
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>

@@ -3,18 +3,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weavus.weavusshoppingmall.repo.ItemMapper">
     <select id="findById" resultType="com.weavus.weavusshoppingmall.entity.Item">
-        select * from item
-        where itemId = #{itemId}
+        select item_id as itemId, item_name as itemName, item_category as itemCategory, item_info as itemInfo, item_price as itemPrice, item_status as itemStatus, filepath, filename
+        from item
+        where item_id = #{itemId}
     </select>
+
 
     <insert id="saveItem" parameterType="com.weavus.weavusshoppingmall.entity.Item">
         insert into item (item_id, item_name, item_category, item_info, item_price, item_status, filepath, filename)
-        values (#{itemId}, #{itemName}, #{itemCategory}, #{itemInfo}, #{itemPrice}, #{itemStatus}, #{filepath}, #{filename});
+        values (null, #{itemName}, #{itemCategory}, #{itemInfo}, #{itemPrice}, #{itemStatus}, #{filepath}, #{filename});
+    </insert>
+
+    <insert id="updateItem" parameterType="com.weavus.weavusshoppingmall.entity.Item">
+        update `item` set `item_name` = #{itemName}, `item_category` = #{itemCategory}, `item_info` = #{itemInfo}, `item_price` = #{itemPrice}
+        WHERE `item`.`item_id` = #{itemId}
     </insert>
 
     <select id="getAllItems" resultType="com.weavus.weavusshoppingmall.entity.Item">
     select * from item
     </select>
 
+    <select id="findByItemCategory" resultType="com.weavus.weavusshoppingmall.entity.Item">
+        select item_id as itemId, item_name as itemName, item_category as itemCategory, item_info as itemInfo, item_price as itemPrice, item_status as itemStatus, filepath, filename
+        from item
+        where item_category = #{num}
+    </select>
 
 </mapper>

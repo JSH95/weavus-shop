@@ -1,7 +1,6 @@
 package com.weavus.weavusshoppingmall.repo;
 
 import com.weavus.weavusshoppingmall.entity.Item;
-import com.weavus.weavusshoppingmall.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -13,4 +12,9 @@ public interface ItemMapper {
     void saveItem(Item item);
 
     List<Item> getAllItems();
+
+    List<Item> findByItemCategory(String num);
+
+    void updateItem(Item item);
+
 }

@@ -2,13 +2,12 @@ package com.weavus.weavusshoppingmall.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 public class Item {
 
-    private  String itemId;
+    private String itemId;
     private String itemName;
     private String itemCategory;
     private String itemInfo;
