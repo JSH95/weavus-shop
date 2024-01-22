@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=2E64FE&height=150&section=header&text=WEAVUS%20미니프로젝트&fontSize=25"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=2E64FE&height=150&section=header&text=WEAVUS%20쇼핑몰 프로젝트&fontSize=25"/>
 
 
 Our Team used 
