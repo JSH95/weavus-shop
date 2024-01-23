@@ -1,0 +1,53 @@
+데이터 베이스 명 : shoppingmall
+
+1. user 테이블 SQL
+
+create table user
+(
+    id           varchar(16)                      not null
+        primary key,
+    password     varchar(100)                     not null,
+    user_email   varchar(50)                      not null,
+    card_number  int(4)                           not null,
+    card_cvc     int(3)                           not null,
+    user_name    varchar(100)                     not null,
+    user_en_name varchar(100)                     not null,
+    create_date  date default current_timestamp() null,
+    is_active    char default '0'                 not null comment '0: 활성화, 1:휴먼상태
+2: 비활성화'
+);
+
+
+2. item 테이블 SQL
+
+create table item
+(
+    item_id       int auto_increment
+        primary key,
+    item_name     varchar(100)     not null,
+    item_category char             not null comment '1 : 남성옷, 2: 여성옷, 3:유아옷,
+4:남성신발, 5: 여성신발, 6: 유아신발',
+    item_info     varchar(255)     not null,
+    item_price    int(10)          not null,
+    item_status   char default '1' not null comment '0: 재고없음, 1: 재고있음',
+    filepath      varchar(300)     not null,
+    filename      varchar(100)     not null
+);
+
+
+3. cart 테이블 SQL
+
+create table cart
+(
+    cart_id    int(20) auto_increment
+        primary key,
+    id         varchar(20)                          not null,
+    item_id    int(20)                              not null,
+    cart_stock int(100)                             null,
+    created_at datetime default current_timestamp() null,
+    constraint cart_ibfk_1
+        foreign key (id) references user (id),
+    constraint cart_ibfk_2
+        foreign key (item_id) references item (item_id)
+);
+
