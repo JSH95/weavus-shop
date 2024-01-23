@@ -8,6 +8,7 @@ public class ItemDto {
     private String itemCategory;
     private String itemInfo;
     private String itemPrice;
+    private String itemStatus;
     private String filepath;
     private String filename;
 }

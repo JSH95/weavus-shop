@@ -1,8 +1,11 @@
 package com.weavus.weavusshoppingmall.controller;
 
+import com.weavus.weavusshoppingmall.entity.Cart;
 import com.weavus.weavusshoppingmall.entity.Item;
+import com.weavus.weavusshoppingmall.entity.User;
 import com.weavus.weavusshoppingmall.repo.ItemMapper;
 import com.weavus.weavusshoppingmall.service.ItemService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -23,18 +26,52 @@ public class ItemController {
     private final ItemMapper itemMapper;
 
 @GetMapping("/{num}") //카테고리 정리
-    public String mainP(@PathVariable String num, Model model){
+    public String mainP(@PathVariable String num, Model model, HttpSession session) {
 
-        List<Item> items = itemService.findByItemCategory(num);
-        model.addAttribute("items", items);
+//        List<Item> items = itemService.findByItemCategoryAndItemStatus(num, "1");
+//        model.addAttribute("items", items);
+
+        Object userObj = session.getAttribute("user");
+        User user = (User) userObj;
+        if(user != null) {
+        List<Cart> cartInfo = itemService.findCartInfoByUserId(user.getId());
+        model.addAttribute("cartInfo", cartInfo);
+            if(user.getId().equals("admin")){
+                List<Item> items = itemService.findByItemCategory(num);
+                model.addAttribute("items", items);
+            } else{
+                List<Item> items = itemService.findByItemCategoryAndItemStatus(num, "1");
+                model.addAttribute("items", items);
+            }
+        } else{
+            List<Item> items = itemService.findByItemCategoryAndItemStatus(num, "1");
+            model.addAttribute("items", items);
+        }
+
         return "index";
     }
 
     @GetMapping("/") //기본 메인화면
-    public String mainP(Model model){
+    public String mainP(Model model, HttpSession session){
 
-        List<Item> items = itemService.getAllItems();
-        model.addAttribute("items", items);
+        Object userObj = session.getAttribute("user");
+        User user = (User) userObj;
+
+        if(user != null) {
+            List<Cart> cartInfo = itemService.findCartInfoByUserId(user.getId());
+            model.addAttribute("cartInfo", cartInfo);
+            if(user.getId().equals("admin")){
+                List<Item> items = itemService.getAllItems();
+                model.addAttribute("items", items);
+            } else{
+                List<Item> items = itemService.findByItemStatus("1");
+                model.addAttribute("items", items);
+            }
+        } else{
+            List<Item> items = itemService.findByItemStatus("1");
+            model.addAttribute("items", items);
+        }
+
         return "index";
     }
 
@@ -85,5 +122,6 @@ public class ItemController {
             return "itemModify";
         }
     }
+
 
 }

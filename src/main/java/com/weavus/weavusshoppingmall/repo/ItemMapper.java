@@ -11,10 +11,13 @@ public interface ItemMapper {
 
     void saveItem(Item item);
 
-    List<Item> getAllItems();
+    List<Item> findByItemStatus(String status);
 
-    List<Item> findByItemCategory(String num);
+    List<Item> findByItemCategoryAndItemStatus(String num, String status);
 
     void updateItem(Item item);
 
+    List<Item> getAllItems();
+
+    List<Item> findByItemCategory(String num);
 }

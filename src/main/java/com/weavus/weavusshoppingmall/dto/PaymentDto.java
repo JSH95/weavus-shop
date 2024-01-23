@@ -3,13 +3,9 @@ package com.weavus.weavusshoppingmall.dto;
 import lombok.Data;
 
 @Data
-public class UserDto {
+public class PaymentDto {
     private String id;
-    private String password;
-    private String userEmail;
     private String cardNumber;
     private String cardCvc;
-    private String userName;
     private String userEnName;
-    private String isActive;
 }

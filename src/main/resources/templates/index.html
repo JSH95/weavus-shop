@@ -39,22 +39,27 @@
                     </ul>
                 </li>
             </ul>
-                <button class="btn btn-outline-dark" >
-                    <i class="bi-cart-fill me-1"></i>
-                    장바구니
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                </button>
+            <a th:if="${session.user != null and cartInfo != null}" th:href="@{|${session.user.getId()}/cart|}"
+               class="btn btn-outline-dark"
+               th:text="${'Cart : ' + cartInfo.size()}">
+            </a>
             <div th:if="${session.user == null}">
                 <a class="btn btn-outline-dark" href="/login">
                     <i class="bi-cart-fill me-1"></i>
                     로그인
                 </a>
             </div>
-            <div th:if="${session.user != null}">
-                <span th:text="${session.user.getUserName()} + '님 환영합니다.'"></span>
-                <a class="btn btn-outline-dark" href="/logout">로그아웃</a>
-                <div th:if="${session.user.id == 'admin'}" >
-                    <a class="btn btn-outline-dark" th:href="@{/itemSave}">상품등록</a>
+            <div class="container" th:if="${session.user != null}">
+                <div class="col-15">
+                    <span th:text="${session.user.getUserName()} + '님 환영합니다.'"></span>
+                </div>
+                <div class="col-21">
+                    <a class="btn btn-outline-dark" href="/logout">로그아웃</a>
+                </div>
+                <div class="col-21">
+                    <div th:if="${session.user.id == 'admin'}" >
+                        <a class="btn btn-outline-dark" th:href="@{/itemSave}">상품등록</a>
+                    </div>
                 </div>
             </div>
             <span th:text="${msg}"></span>
@@ -85,7 +90,13 @@
                         <h6 th:text="${item.getItemPrice()}"></h6>
                     </div>
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                        <div class="text-center" th:if="${session.user != null}">
+                            <form action="/add-cart" method="post">
+                                <input type="hidden"  name="item_id" th:value="${item.getItemId()}">
+                                <input type="hidden" name="id" th:value="${session.user.getId()}">
+                                <button type="submit" class="btn btn-dark">카트에 추가</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

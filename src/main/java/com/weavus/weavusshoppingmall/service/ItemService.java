@@ -1,6 +1,8 @@
 package com.weavus.weavusshoppingmall.service;
 
+import com.weavus.weavusshoppingmall.entity.Cart;
 import com.weavus.weavusshoppingmall.entity.Item;
+import com.weavus.weavusshoppingmall.repo.CartMapper;
 import com.weavus.weavusshoppingmall.repo.ItemMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import java.util.UUID;
 public class ItemService {
 
     private final ItemMapper itemMapper;
+    private final CartMapper cartMapper;
 
     public boolean write(Item item, MultipartFile file) throws Exception {
         String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files\\";
@@ -38,12 +41,12 @@ public class ItemService {
         }
     }
 
-    public List<Item> getAllItems(){
-        return itemMapper.getAllItems();
+    public List<Item> findByItemStatus(String status){
+        return itemMapper.findByItemStatus(status);
     }
 
-    public List<Item> findByItemCategory(String num){
-        return itemMapper.findByItemCategory(num);
+    public List<Item> findByItemCategoryAndItemStatus(String num, String status){
+        return itemMapper.findByItemCategoryAndItemStatus(num, status);
     }
 
     public boolean modify(Item item) {
@@ -56,4 +59,24 @@ public class ItemService {
         }
     }
 
+    public void addItemToCart(String item_id, String user_id) {
+
+        cartMapper.addItemToCart(item_id, user_id);
+    }
+
+    public List<Cart> findCartInfoByUserId(String id) {
+        return cartMapper.findCartInfoByUserId(id);
+    }
+
+    public void clearCartByUserId(String id) {
+        cartMapper.clearCartByUserId(id);
+    }
+
+    public List<Item> getAllItems(){
+        return itemMapper.getAllItems();
+    }
+
+    public List<Item> findByItemCategory(String num){
+        return itemMapper.findByItemCategory(num);
+    }
 }

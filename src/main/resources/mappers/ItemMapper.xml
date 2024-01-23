@@ -15,12 +15,22 @@
     </insert>
 
     <insert id="updateItem" parameterType="com.weavus.weavusshoppingmall.entity.Item">
-        update `item` set `item_name` = #{itemName}, `item_category` = #{itemCategory}, `item_info` = #{itemInfo}, `item_price` = #{itemPrice}
+        update `item` set `item_name` = #{itemName}, `item_category` = #{itemCategory}, `item_info` = #{itemInfo}, `item_price` = #{itemPrice}, `item_status` = #{itemStatus}
         WHERE `item`.`item_id` = #{itemId}
     </insert>
 
+    <select id="findByItemStatus" resultType="com.weavus.weavusshoppingmall.entity.Item">
+    select * from item where item_status = #{status}
+    </select>
+
+    <select id="findByItemCategoryAndItemStatus" resultType="com.weavus.weavusshoppingmall.entity.Item">
+        select item_id as itemId, item_name as itemName, item_category as itemCategory, item_info as itemInfo, item_price as itemPrice, item_status as itemStatus, filepath, filename
+        from item
+        where item_category = #{num} AND item_status = #{status}
+    </select>
+
     <select id="getAllItems" resultType="com.weavus.weavusshoppingmall.entity.Item">
-    select * from item
+        select * from item
     </select>
 
     <select id="findByItemCategory" resultType="com.weavus.weavusshoppingmall.entity.Item">
@@ -28,5 +38,6 @@
         from item
         where item_category = #{num}
     </select>
+
 
 </mapper>
