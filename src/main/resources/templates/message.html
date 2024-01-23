@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--model안에 저장되어있는 message, searchUrl사용 -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const message = [[${message}]];
+    alert(message);
+    location.replace([[${searchUrl}]]);
+    /*]]>*/
+
+    // /*<![CDATA[*/
+    // setTimeout(function() {
+    //     const message = [[${message}]];
+    //     alert(message);
+    //     location.replace([[${searchUrl}]]);
+    // }, 0);
+</script>
+<body>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>카트정보</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .layout {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px; /* 테이블 상단 여백 조절 */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .img-small {
+            width: 120px;
+            height: 120px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="layout">
+        <h3>카트정보</h3>
+        <h6 th:if="${param.status}" th:text="${param.message}" style="color: red"></h6>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">번호</th>
+                    <th scope="col">상품이름</th>
+                    <th scope="col">상품이미지</th>
+                    <th scope="col">상품가격</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each=" cart, cartStat :${carts}">
+                <td th:text="${cartStat.count}"></td>
+                <td th:text="${cart.getItemList()[0].getItemName()}"></td>
+                <td>
+                    <img class="img-small" th:src="@{|/files/${cart.getItemList()[0].getFilename()}|}" alt="" >
+                </td>
+                <td th:text="${cart.getItemList()[0].getItemPrice()}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">
+            결제하기
+        </button>
+
+        <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="paymentModalLabel">결제 정보 입력</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form th:action="@{|/${user.getId()}/cart|}" method="post">
+                            <div class="mb-3">
+                                <label class="form-label">카드 번호</label>
+                                <input type="text" class="form-control" name="cardNumber" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">CVC</label>
+                                <input type="text" class="form-control" name="cardCvc" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">결제 확인</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
