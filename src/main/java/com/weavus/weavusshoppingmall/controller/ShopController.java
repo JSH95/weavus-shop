@@ -25,7 +25,6 @@ public class ShopController {
     private final LoginService loginService;
     private final UserMapper userMapper;
 
-
     @PostMapping("add-cart")
     public String addItemToCart(@RequestParam String item_id, @RequestParam String id, Model model) {
 
@@ -41,7 +40,6 @@ public class ShopController {
         List<Cart> carts = itemService.findCartInfoByUserId(id);
 
         Object status = model.getAttribute("status");
-
 
         if(carts.isEmpty()) {
             model.addAttribute("message", "카트가 비어있습니다.");
@@ -76,13 +74,10 @@ public class ShopController {
             return "message";
         } else {
             log.info("결제 실패");
-//            redirectAttributes.addAttribute("message", "결제에 실패했습니다. 다시 시도해주세요.");
             redirectAttributes.addFlashAttribute("status", true);
-
             return "redirect:/" + paymentDto.getId() + "/cart";
         }
     }
-
 
     @GetMapping("/{id}/detail")
     public String detailCartInfo(@PathVariable String id) {
@@ -104,12 +99,11 @@ public class ShopController {
             model.addAttribute("message", "결제가 완료되었습니다.");
             model.addAttribute("searchUrl", "/");
             itemService.clearCartByUserId(paymentDto.getId());
-            return "message";
         } else {
             log.info("결제 실패");
             model.addAttribute("message", "결제에 실패했습니다. 다시 시도해주세요.");
             model.addAttribute("searchUrl", "redirect:/detail");
-            return "message";
         }
+        return "message";
     }
 }

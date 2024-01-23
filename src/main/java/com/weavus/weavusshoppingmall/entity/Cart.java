@@ -10,15 +10,10 @@ import java.util.List;
 public class Cart {
 
     private String cartId;
-
     private String id;
-
     private String itemId;
-
     private String cartStock;
-
     private LocalDate createdAt;
-
     private List<Item> itemList = new ArrayList<>();
 
 }

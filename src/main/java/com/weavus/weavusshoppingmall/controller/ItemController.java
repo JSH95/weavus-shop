@@ -28,26 +28,23 @@ public class ItemController {
 @GetMapping("/{num}") //카테고리 정리
     public String mainP(@PathVariable String num, Model model, HttpSession session) {
 
-//        List<Item> items = itemService.findByItemCategoryAndItemStatus(num, "1");
-//        model.addAttribute("items", items);
-
         Object userObj = session.getAttribute("user");
         User user = (User) userObj;
+
         if(user != null) {
-        List<Cart> cartInfo = itemService.findCartInfoByUserId(user.getId());
-        model.addAttribute("cartInfo", cartInfo);
-            if(user.getId().equals("admin")){
-                List<Item> items = itemService.findByItemCategory(num);
-                model.addAttribute("items", items);
-            } else{
-                List<Item> items = itemService.findByItemCategoryAndItemStatus(num, "1");
-                model.addAttribute("items", items);
-            }
-        } else{
+            List<Cart> cartInfo = itemService.findCartInfoByUserId(user.getId());
+            List<Item> items;
+            model.addAttribute("cartInfo", cartInfo);
+                if(user.getId().equals("admin")){
+                    items = itemService.findByItemCategory(num);
+                } else{
+                    items = itemService.findByItemCategoryAndItemStatus(num, "1");
+                }
+            model.addAttribute("items", items);
+        } else {
             List<Item> items = itemService.findByItemCategoryAndItemStatus(num, "1");
             model.addAttribute("items", items);
-        }
-
+            }
         return "index";
     }
 
@@ -59,14 +56,14 @@ public class ItemController {
 
         if(user != null) {
             List<Cart> cartInfo = itemService.findCartInfoByUserId(user.getId());
+            List<Item> items;
             model.addAttribute("cartInfo", cartInfo);
             if(user.getId().equals("admin")){
-                List<Item> items = itemService.getAllItems();
-                model.addAttribute("items", items);
+                items = itemService.getAllItems();
             } else{
-                List<Item> items = itemService.findByItemStatus("1");
-                model.addAttribute("items", items);
+                items = itemService.findByItemStatus("1");
             }
+            model.addAttribute("items", items);
         } else{
             List<Item> items = itemService.findByItemStatus("1");
             model.addAttribute("items", items);
@@ -122,6 +119,4 @@ public class ItemController {
             return "itemModify";
         }
     }
-
-
 }

@@ -51,9 +51,6 @@
     <br>
     <input type="text" class="form-control" name="itemStatus" style="width: 40%" placeholder="itemStatus" th:value="${modify.itemStatus}" required>
     <br>
-
-
-
     <button type="submit" class="btn btn-warning">수정하기</button>
     <a th:href="@{/detail/{id}(id = ${modify.itemId})}" class="btn btn-success">뒤로가기</a>
     <span th:text="${msg}"></span>
