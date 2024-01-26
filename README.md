@@ -50,6 +50,10 @@
 ## 5.카테고리 기능
 ### 옷, 신발 총 6개의 카테고리별 상품 보기가 가능합니다.
 <img src="https://github.com/JSH95/weavus-shop/assets/153478886/716807e3-d3c7-465c-9f6c-174fd6b6279c" width="500" height="500"/></img>
-## 6.
-
+## 6.상품 상세화면과 장바구니 기능
+### 상품 상세화면에서 상품이름, 상품내용, 상품가격을 확인 할 수 있습니다.
+### 장바구니에 담긴 상품의 숫자가 표시됩니다.
+<img src="https://github.com/JSH95/weavus-shop/assets/153478886/74ee0a35-8701-4038-b056-c30b20ada963" width="500" height="500"/></img>
+## 7.결제시스템
+<img src="https://github.com/JSH95/weavus-shop/assets/153478886/af846416-9055-4416-a608-a923be3cf233" width="500" height="500"/></img>
 
